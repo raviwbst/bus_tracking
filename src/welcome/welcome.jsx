@@ -36,7 +36,7 @@ class Welcome extends Component {
         return (
             <div className="welcome_content">
                 <div className="container">
-                    <h3 className="title">Welcome! {this.state.name} ( {this.state.email} )</h3>
+                    <h3 className="title">Welcome! </h3>
                 </div>
             </div>
         );

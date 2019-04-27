@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import history from '../history';
 import logoimg from '../assets/images/schoolbus.png'
-import bgimg from '../assets/images/school-buses.jpg'
+import bgimg from '../assets/images/school-buses.jpg';
+import { Link } from 'react-router-dom'
 // import config from '../config_cognito';
 import Amplify, { Auth } from 'aws-amplify';
 import './login.css'
@@ -95,7 +96,7 @@ class Login extends Component {
                                         <div className="col-lg-7 col-md-7 form-section">
                                             <div className="inner_wrapper">
                                                 <h3 className="title">Login to your account</h3>
-                                                <p className="sub_title">Don’t have an account? <a href="#">Sign Up Now!</a></p>
+                                                <p className="sub_title">Don’t have an account? <Link to="/signup">Sign Up Now!</Link></p>
                                                 <Form>
                                                     <Form.Group className="custom_input">
                                                         <Form.Control type="email" name="username" placeholder="Email address" />
