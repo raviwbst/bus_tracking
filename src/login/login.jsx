@@ -22,7 +22,7 @@ class Login extends Component {
         type: 0
     }
 
-    componentDidMount(){
+    componentDidMount() {
         if (localStorage.getItem('aws_token')) {
             history.push('/welcome');
         }

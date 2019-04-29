@@ -23,29 +23,31 @@ class Signup extends Component {
         let password = document.querySelector('input[name=password]').value;            // your password here
         let name = document.querySelector('input[name=fullname]').value;
         if (username !== '' && password !== '' && name !== '') {
-
-
-            Auth.signUp({
-                username,
-                password,
-                attributes: {
-                    name: name          // optional
-                    //phone_number,   // optional - E.164 number convention
-                    // other custom attributes 
-                },
-                //validationData: []  //optional
-            })
-                .then(data => {
-                    this.setState({ msg: 'Account created successfully, verification link has been sent to your email.', type: 1 })
-                    document.querySelector('input[name=username]').value = ''; // your username here
-                    document.querySelector('input[name=password]').value = '';            // your password here
-                    document.querySelector('input[name=fullname]').value = '';
-                    // console.log(data)
+            if (password.length >= 8) {
+                Auth.signUp({
+                    username,
+                    password,
+                    attributes: {
+                        name: name          // optional
+                        //phone_number,   // optional - E.164 number convention
+                        // other custom attributes 
+                    },
+                    //validationData: []  //optional
                 })
-                .catch(err => {
-                    this.setState({ msg: err.message, type: 0 })
-                    // console.log(err)
-                });
+                    .then(data => {
+                        this.setState({ msg: 'Account created successfully, verification link has been sent to your email.', type: 1 })
+                        document.querySelector('input[name=username]').value = ''; // your username here
+                        document.querySelector('input[name=password]').value = '';            // your password here
+                        document.querySelector('input[name=fullname]').value = '';
+                        // console.log(data)
+                    })
+                    .catch(err => {
+                        this.setState({ msg: err.message, type: 0 })
+                        // console.log(err)
+                    });
+            } else {
+                this.setState({ msg: 'Password should be 8 digit long', type: 0 })
+            }
         } else {
             this.setState({ msg: 'Please fill all required fields', type: 0 })
         }
@@ -98,8 +100,18 @@ class Signup extends Component {
                                                     </Form.Group>
 
 
-                                                    <Form.Group className="custom_input">
+                                                    <Form.Group className="custom_input pwdd">
                                                         <Form.Control type="password" name="password" placeholder="Password" />
+                                                        <div className="privacy_password">
+                                                            <h6>Password must have</h6>
+                                                            <ul>
+                                                                <li>minimum length 8</li>
+                                                                <li>require numbers</li>
+                                                                <li>Require special character</li>
+                                                                <li>Require uppercase letters</li>
+                                                                <li>Require lowercase letters</li>
+                                                            </ul>
+                                                        </div>
                                                     </Form.Group>
                                                     {/* <Form.Group className="custom_input">
                             <Form.Control type="password" name="repeat password" placeholder="Repeat password" />
