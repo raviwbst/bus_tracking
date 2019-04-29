@@ -37,6 +37,10 @@ class Welcome extends Component {
             <div className="welcome_content">
                 <div className="container">
                     <h3 className="title">Welcome! </h3>
+                    <button onClick={() => {
+                        localStorage.removeItem("aws_token");
+                        history.push("/");
+                    }}>Logout</button>
                 </div>
             </div>
         );
